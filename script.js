@@ -1,48 +1,50 @@
 const noBtn = document.getElementById("noBtn");
 const isMobile = window.matchMedia("(pointer: coarse)").matches;
 
-// ПК — кнопка тікає
 if (!isMobile) {
     noBtn.addEventListener("mouseover", () => {
-        const maxX = 250;
-        const maxY = 40;
-
-        const randomX = Math.random() * maxX;
-        const randomY = Math.random() * maxY;
-
-        noBtn.style.left = randomX + "px";
-        noBtn.style.top = randomY + "px";
+        noBtn.style.left = Math.random() * 250 + "px";
+        noBtn.style.top = Math.random() * 40 + "px";
     });
-}
-// Мобільна — стає "Так"
-else {
+} else {
     noBtn.addEventListener("click", () => {
         noBtn.textContent = "Так 💘";
-        noBtn.classList.remove("no");
-        noBtn.classList.add("yes");
-        noBtn.onclick = sayYes;
+        noBtn.onclick = startLove;
     });
 }
 
-function sayYes() {
-    document.getElementById("loveMessage").style.display = "block";
-    document.querySelector(".buttons").style.display = "none";
-}
+function startLove() {
+    const container = document.getElementById("splitContainer");
+    const finalScene = document.getElementById("finalScene");
 
-// Генерація сердечок
-const heartsContainer = document.querySelector(".hearts");
-
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-    heartsContainer.appendChild(heart);
+    container.classList.add("split");
 
     setTimeout(() => {
-        heart.remove();
-    }, 5000);
+        finalScene.style.opacity = "1";
+        launchConfetti();
+    }, 1000);
 }
 
-setInterval(createHeart, 300);
+/* Конфеті + сердечка */
+function launchConfetti() {
+    const container = document.querySelector(".confetti-container");
+
+    for (let i = 0; i < 120; i++) {
+        const conf = document.createElement("div");
+        conf.classList.add("confetti");
+
+        conf.style.left = Math.random() * 100 + "vw";
+        conf.style.background = Math.random() > 0.5 ? "#fff" : "#ff4b7d";
+        conf.style.top = "-10px";
+
+        if (Math.random() > 0.7) {
+            conf.innerHTML = "❤️";
+            conf.style.fontSize = "18px";
+            conf.style.background = "transparent";
+        }
+
+        container.appendChild(conf);
+
+        setTimeout(() => conf.remove(), 2000);
+    }
+}

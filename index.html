@@ -3,27 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ти будеш моєю Валентинкою? ❤️</title>
+    <title>Моя Валентинка ❤️</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="hearts"></div>
+<div class="confetti-container"></div>
 
-<div class="container">
-    <h1>Ти будеш моєю валентинкою? 💖</h1>
+<div class="main-wrapper">
 
-    <img src="photo.jpg" alt="Наше фото">
-
-    <div class="buttons">
-        <button class="yes" onclick="sayYes()">Так 💘</button>
-        <button class="no" id="noBtn">Ні 🙈</button>
+    <!-- Фінальна сцена -->
+    <div class="final-scene" id="finalScene">
+        <div class="big-heart">❤️</div>
+        <img src="photo2.jpg" class="final-photo">
     </div>
 
-    <div class="message" id="loveMessage">
-        💞 Я знав, що ти скажеш "Так"! 💞<br>
-        Люблю тебе безмежно ❤️
+    <!-- Контейнер який "ламається" -->
+    <div class="container" id="splitContainer">
+
+        <div class="half left"></div>
+        <div class="half right"></div>
+
+        <div class="content">
+            <h1>Ти будеш моєю валентинкою? 💖</h1>
+            <img src="photo.jpg">
+            <div class="buttons">
+                <button class="yes" onclick="startLove()">Так 💘</button>
+                <button class="no" id="noBtn">Ні 🙈</button>
+            </div>
+        </div>
+
     </div>
+
 </div>
 
 <script src="script.js"></script>
