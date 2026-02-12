@@ -1,6 +1,7 @@
 const noBtn = document.getElementById("noBtn");
 const isMobile = window.matchMedia("(pointer: coarse)").matches;
 
+/* Кнопка НІ */
 if (!isMobile) {
     noBtn.addEventListener("mouseover", () => {
         noBtn.style.left = Math.random() * 250 + "px";
@@ -13,38 +14,76 @@ if (!isMobile) {
     });
 }
 
+/* Старт анімації */
 function startLove() {
     const container = document.getElementById("splitContainer");
     const finalScene = document.getElementById("finalScene");
 
-    container.classList.add("split");
+    container.classList.add("slide"); // жалюзі і контент
 
     setTimeout(() => {
         finalScene.style.opacity = "1";
-        launchConfetti();
-    }, 1000);
+        explodeConfetti();
+    }, 900);
 }
 
-/* Конфеті + сердечка */
-function launchConfetti() {
+/* Вибух конфеті з центру */
+function explodeConfetti() {
     const container = document.querySelector(".confetti-container");
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
 
-    for (let i = 0; i < 120; i++) {
-        const conf = document.createElement("div");
-        conf.classList.add("confetti");
+    for (let i = 0; i < 200; i++) {
+        const particle = document.createElement("div");
+        particle.classList.add("confetti");
 
-        conf.style.left = Math.random() * 100 + "vw";
-        conf.style.background = Math.random() > 0.5 ? "#fff" : "#ff4b7d";
-        conf.style.top = "-10px";
+        const isHeart = Math.random() > 0.7;
 
-        if (Math.random() > 0.7) {
-            conf.innerHTML = "❤️";
-            conf.style.fontSize = "18px";
-            conf.style.background = "transparent";
+        if (isHeart) {
+            particle.innerHTML = "❤️";
+            particle.style.fontSize = "16px";
+        } else {
+            particle.style.background = Math.random() > 0.5 ? "#fff" : "#ff4b7d";
         }
 
-        container.appendChild(conf);
+        particle.style.left = centerX + "px";
+        particle.style.top = centerY + "px";
 
-        setTimeout(() => conf.remove(), 2000);
+        container.appendChild(particle);
+
+        animateParticle(particle, centerX, centerY);
     }
+}
+
+/* Фізика руху конфеті */
+function animateParticle(el, startX, startY) {
+    let x = startX;
+    let y = startY;
+
+    const angle = Math.random() * 2 * Math.PI;
+    let velocity = Math.random() * 15 + 5;
+
+    let vx = Math.cos(angle) * velocity;
+    let vy = Math.sin(angle) * velocity;
+
+    const gravity = 0.4;
+
+    function update() {
+        vx *= 0.98; // тертя
+        vy += gravity; // гравітація
+
+        x += vx;
+        y += vy;
+
+        el.style.left = x + "px";
+        el.style.top = y + "px";
+
+        if (y < window.innerHeight + 50) {
+            requestAnimationFrame(update);
+        } else {
+            el.remove();
+        }
+    }
+
+    update();
 }
