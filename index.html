@@ -1,51 +1,38 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Моя Валентинка ❤️</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./src/style.css">
 </head>
+
 <body>
+    <div class="hearts"></div>
+    <div class="confetti-container"></div>
+    <div class="scene">
+        <div class="envelope">
+            <div class="big-heart">❤️</div>
+            <div class="sides">
+                <div class="top"></div>
+                <div class="other"></div>
 
-<div class="confetti-container"></div>
-
-<div class="scene">
-
-    <!-- ФІНАЛ -->
-    <div class="final-scene" id="finalScene">
-        <div class="big-heart">❤️</div>
-        <img src="photo2.jpg" class="final-photo" alt="Ми разом">
-    </div>
-
-    <!-- КОНТЕЙНЕР -->
-    <div class="container" id="splitContainer">
-
-        <!-- Жалюзі -->
-        <div class="blinds">
-            <div class="blind"></div>
-            <div class="blind"></div>
-            <div class="blind"></div>
-            <div class="blind"></div>
-            <div class="blind"></div>
-            <div class="blind"></div>
-            <div class="blind"></div>
-            <div class="blind"></div>
-        </div>
-
-        <div class="content">
-            <h1>Ти будеш моєю валентинкою? 💖</h1>
-            <img src="photo.jpg" alt="Наше фото">
-            <div class="buttons">
-                <button class="yes" onclick="startLove()">Так 💘</button>
-                <button class="no" id="noBtn">Ні 🙈</button>
+            </div>
+            <div class="asking-card">
+                <h1 class="text-4xl text-orange-700 font-bold">Будь моєю Валентинкою?</h1>
+                <div class="btns">
+                    <div id="yes-btn" class="w-14"><img class="w-full" src="./src/fa15a09a.gif" alt="">Так</div>
+                    <div id="no-btn" class="w-14"><img class="w-full" src="./src/74493c73.gif" alt="">Ні</div>
+                </div>
             </div>
         </div>
-
     </div>
-
-</div>
-
-<script src="script.js"></script>
+    <div class="final-message">
+        <h1 class="text-9xl text-orange-700 font-bold">УРА!!! 😍</h1>
+        <img src="./src/fe950d90.gif" class="final-photo">
+    </div>
+    <script src="./src/script.js"></script>
 </body>
+
 </html>
