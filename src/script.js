@@ -9,12 +9,13 @@ const isMobile = window.matchMedia("(pointer: coarse)").matches;
 yesBtn.addEventListener("click", () => {
     startLove();
 });
+const btnSize = 80; // розмір кнопки
+const attempts = 100; // щоб не зациклитися
+let shrinkFactor = 1;
 noBtn.addEventListener("click", () => {
     noBtn.style.position = "absolute";
 
-    const btnSize = 80; // розмір кнопки
-    const attempts = 100; // щоб не зациклитися
-
+    shrinkFactor -= 0.2; // кожен раз трохи зменшуємо
     for (let i = 0; i < attempts; i++) {
         const maxX = askingCard.clientWidth - btnSize;
         const maxY = askingCard.clientHeight - btnSize;
@@ -28,6 +29,8 @@ noBtn.addEventListener("click", () => {
         if (Math.hypot(dx, dy) >= 2 * btnSize) {
             noBtn.style.left = randomX + "px";
             noBtn.style.top = randomY + "px";
+            // noBtn.style.transform = `scale("${shrinkFactor}")`;
+            noBtn.style.transform = `scale(${shrinkFactor})`;
             break; // вийшли з циклу, координати підібрано
         }
     }
