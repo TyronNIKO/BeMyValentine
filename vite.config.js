@@ -2,6 +2,6 @@ import {defineConfig} from "vite";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-    // base: "/BeMyValentine/",
+    base: "/BeMyValentine/",
     plugins: [tailwindcss()],
 });
